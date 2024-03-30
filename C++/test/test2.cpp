@@ -37,6 +37,8 @@ void solve(){
 }
 
 int main() {
+    freopen("./in.txt","r",stdin);
+    freopen("./out.txt","w",stdout);
     clock_t startTime{clock()};
     solve();
     clock_t endTime{clock()};

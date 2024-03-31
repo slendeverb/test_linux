@@ -38,12 +38,14 @@ using namespace std;
 
 int solve()
 {
-    boost::locale::generator gen;
-    std::locale loc = gen("zh_CN");
-    std::cin.imbue(loc);
+    std::cin.imbue(std::locale{""});
+    std::cout<<std::cin.getloc().name()<<std::endl;
     long double money;
     std::cin>>std::get_money(money);
-    std::cout << money << std::endl;
+    std::cout << std::put_money(money) << std::endl;
+    std::tm time;
+    std::cin>>std::get_time(&time,"%Y-%m-%d %H:%M:%S");
+    std::cout<<std::put_time(&time,"%Y-%m-%d %H:%M:%S")<<std::endl;
 }
 
 int main()

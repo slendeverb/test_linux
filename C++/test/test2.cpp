@@ -1,4 +1,10 @@
-#include <stdlib.h>
+#include <cstdarg>
+#include <boost/locale.hpp>
+#include <iomanip>
+#include <concepts>
+#include <cstdio>
+#include <ctime>
+#include <bit>
 #include <algorithm>
 #include <array>
 #include <charconv>
@@ -30,18 +36,24 @@
 //
 using namespace std;
 
-void solve(){
-    std::cout<<std::cout.getloc().name()<<std::endl;
-    std::cout.imbue(std::locale{""});
-    std::cout<<std::cout.getloc().name()<<std::endl;
+int solve()
+{
+    boost::locale::generator gen;
+    std::locale loc = gen("zh_CN");
+    std::cin.imbue(loc);
+    long double money;
+    std::cin>>std::get_money(money);
+    std::cout << money << std::endl;
 }
 
-int main() {
-    freopen("./in.txt","r",stdin);
-    freopen("./out.txt","w",stdout);
+int main()
+{
+    freopen("./in.txt", "r", stdin);
+    freopen("./out.txt", "w", stdout);
+    freopen("./err.txt", "w", stderr);
     clock_t startTime{clock()};
     solve();
     clock_t endTime{clock()};
-    std::cout << endTime - startTime << std::endl;
+    std::cout << "time cost: " << endTime - startTime << std::endl;
     return 0;
 }

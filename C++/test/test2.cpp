@@ -39,23 +39,36 @@ using namespace std;
 int solve()
 {
     std::cin.imbue(std::locale{""});
-    std::cout<<std::cin.getloc().name()<<std::endl;
+    std::cout << std::cin.getloc().name() << std::endl;
     long double money;
-    std::cin>>std::get_money(money);
+    std::cin >> std::get_money(money);
     std::cout << std::put_money(money) << std::endl;
     std::tm time;
-    std::cin>>std::get_time(&time,"%Y-%m-%d %H:%M:%S");
-    std::cout<<std::put_time(&time,"%Y-%m-%d %H:%M:%S")<<std::endl;
+    std::cin >> std::get_time(&time, "%Y-%m-%d %H:%M:%S");
+    std::cout << std::put_time(&time, "%Y-%m-%d %H:%M:%S") << std::endl;
 }
 
 int main()
 {
-    freopen("./in.txt", "r", stdin);
-    freopen("./out.txt", "w", stdout);
-    freopen("./err.txt", "w", stderr);
+    // std::ifstream in{"./in.txt"};
+    // std::streambuf* oldIn{std::cin.rdbuf(in.rdbuf())};
+    // std::ofstream out{"./out.txt"};
+    // std::streambuf* oldOut{std::cout.rdbuf(out.rdbuf())};
+    // std::ofstream err{"./err.txt"};
+    // std::streambuf* oldErr{std::cerr.rdbuf(err.rdbuf())};
+    // std::streambuf* oldLog{std::clog.rdbuf(err.rdbuf())};
+    
     clock_t startTime{clock()};
     solve();
     clock_t endTime{clock()};
     std::cout << "time cost: " << endTime - startTime << std::endl;
+
+    // in.close();
+    // std::cin.rdbuf(oldIn);
+    // out.close();
+    // std::cout.rdbuf(oldOut);
+    // err.close();
+    // std::cerr.rdbuf(oldErr);
+    // std::clog.rdbuf(oldLog);
     return 0;
 }

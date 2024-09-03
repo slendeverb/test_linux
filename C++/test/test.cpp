@@ -33,40 +33,23 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
-//
-using namespace std;
 
-int solve() {
-    std::cin.imbue(std::locale{""});
-    std::cout << std::cin.getloc().name() << std::endl;
-    long double money;
-    std::cin >> std::get_money(money);
-    std::cout << std::put_money(money) << std::endl;
-    std::tm time;
-    std::cin >> std::get_time(&time, "%Y-%m-%d %H:%M:%S");
-    std::cout << std::put_time(&time, "%Y-%m-%d %H:%M:%S") << std::endl;
-}
+using namespace std;
 
 int main() {
     std::ifstream in{"./in.txt"};
-    std::streambuf* oldIn{std::cin.rdbuf(in.rdbuf())};
-    // std::ofstream out{"./out.txt"};
-    // std::streambuf* oldOut{std::cout.rdbuf(out.rdbuf())};
-    // std::ofstream err{"./err.txt"};
-    // std::streambuf* oldErr{std::cerr.rdbuf(err.rdbuf())};
-    // std::streambuf* oldLog{std::clog.rdbuf(err.rdbuf())};
-
     clock_t startTime{clock()};
-    solve();
+
+    in.imbue(std::locale{""});
+    std::cout << in.getloc().name() << std::endl;
+    long double money;
+    in >> std::get_money(money);
+    std::cout << std::put_money(money) << std::endl;
+    std::tm time;
+    in >> std::get_time(&time, "%Y-%m-%d %H:%M:%S");
+    std::cout << std::put_time(&time, "%Y-%m-%d %H:%M:%S") << std::endl;
+    
     clock_t endTime{clock()};
     std::cout << "time cost: " << endTime - startTime << std::endl;
-
     in.close();
-    std::cin.rdbuf(oldIn);
-    // out.close();
-    // std::cout.rdbuf(oldOut);
-    // err.close();
-    // std::cerr.rdbuf(oldErr);
-    // std::clog.rdbuf(oldLog);
-    return 0;
 }
